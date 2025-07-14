@@ -44,7 +44,7 @@ function insert_inscription($nom, $date_de_naissance, $gender, $email, $ville, $
 //prendre la liste des objects:
 function getListeObjet() {
     $connexion = dbconnect();
-    $sql = "SELECT o.nom_objet, e.date_retour
+    $sql = "SELECT o.id_objet, o.nom_objet, e.date_retour
             FROM f_objet o
             LEFT JOIN f_emprunt e ON o.id_objet = e.id_objet";
     $result = mysqli_query($connexion, $sql);
@@ -52,6 +52,7 @@ function getListeObjet() {
     $objets = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $objets[] = [
+            'id_objet' => $row['id_objet'],
             'nom_objet' => $row['nom_objet'],
             'date_retour' => $row['date_retour']
         ];
@@ -203,6 +204,33 @@ function insertObj($nom_objet, $id_categorie, $id_membre) {
     );
     return mysqli_query($connexion, $sql);
 }
+
+function dateDeRetour($dureEmprunt) {
+    return date('Y-m-d', strtotime("+{$dureEmprunt} days"));
+}
+
+
+function insertUmprunt($id_objet, $id_membre, $dureEmprunt) {
+    $connexion     = dbconnect();
+    $date_emprunt  = date('Y-m-d');
+    $date_retour   = dateDeRetour($dureEmprunt);
+
+    $sql = "
+        INSERT INTO f_emprunt (id_objet, id_membre, date_emprunt, date_retour)
+        VALUES (%d, %d, '%s', '%s')
+    ";
+    $sql = sprintf(
+        $sql,
+        $id_objet,
+        $id_membre,
+        mysqli_real_escape_string($connexion, $date_emprunt),
+        mysqli_real_escape_string($connexion, $date_retour)
+    );
+
+    return mysqli_query($connexion, $sql);
+}
+
+
 
 
 ?>

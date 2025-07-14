@@ -71,4 +71,17 @@ faire marcher en deployement le projet:
                             getLastIdObj()
                         -nom_image
                         
+    Aléas: v3
+    option 1: 4110
+    OKAY!-ajouter un bouton "emprunter" qui mène vers  "emprunt.php" sur chaque objet
+    OKAY!-créer un page "emprunt.php"
+        ajouter un champ : nombre de jour de l'emprunt
+    -créer un page treatment-emprunt.php:
+        créer une fonction: insertUmprunt($id_objet, $ id_membre, $date_emprunt, $date_retour)
+    -ajouter un colonne dans list-objet: disponible le : echo "$date de retour"
+        créer un fonction qui retourne la date de retour:
+            getReturnDate($id_objet)
+    
+    si l'objet est emprunté alors il ne peut plus être emprunté!?
+    créer une session pour chaque objet pour indiquer si il est empruntable ou pas
             

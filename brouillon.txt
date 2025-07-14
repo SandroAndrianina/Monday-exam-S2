@@ -1,0 +1,1 @@
+<a href="emprunt.php?ref=<?php echo $objet['id_objet']; ?>" class="btn btn-dark btn-sm rounded-pill px-3">Emprunter</a>

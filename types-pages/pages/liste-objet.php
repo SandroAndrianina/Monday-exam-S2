@@ -28,6 +28,8 @@ $listObjet = getListeObjet();
                 <th>Nom de l'objet</th>
                 <th>Date de retour</th>
                 <th>Action</th>
+                <th>Emprunt</th>
+                <th>Disponibilité:</th>
             </tr>
         </thead>
         <tbody>
@@ -39,6 +41,9 @@ $listObjet = getListeObjet();
                     </td>
                     <td>
                         <a href="#" class="btn btn-dark btn-sm rounded-pill px-3">Voir</a>
+                    </td>
+                     <td>
+                       <a href="emprunt.php?ref=<?php echo $objet['id_objet']; ?>" class="btn btn-dark btn-sm rounded-pill px-3">Emprunter</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
