@@ -10,18 +10,6 @@ CREATE TABLE f_membre (
   PRIMARY KEY (id_membre)
 );
 
-CREATE TABLE f_membre (
-  id_membre INT NOT NULL AUTO_INCREMENT,
-  nom VARCHAR(14),
-  date_de_naissance DATE,
-  genre ENUM('M','F') NOT NULL,
-  email VARCHAR(30),
-  ville VARCHAR(30),
-  mdp VARCHAR(30),
-  image_profil VARCHAR(50),
-  PRIMARY KEY (id_membre)
-);
-
 CREATE TABLE f_categorie_objet (
   id_categorie INT AUTO_INCREMENT PRIMARY KEY,
   nom_categorie VARCHAR(50) NOT NULL
@@ -106,17 +94,9 @@ FROM f_membre
 WHERE email ='alice@example.com' AND mdp ='pass1';
 
 --prendre la lsite des object:
---temporary
-SELECT o.nom_objet
-FROM f_objet o JOIN f_membre m
-ON o.id_membre  = m.id_membre
-WHERE m.id_membre = 1;
-
-
 --final
 SELECT o.nom_objet, e.date_retour
 FROM f_objet o JOIN f_membre m
 ON o.id_membre  = m.id_membre
 JOIN f_emprunt e
-ON e.id_objet = o.id_objet AND e.id_membre = m.id_membre
-WHERE m.id_membre = 1;
+ON e.id_objet = o.id_objet AND e.id_membre = m.id_membre;
