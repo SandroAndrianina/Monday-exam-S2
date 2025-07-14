@@ -209,7 +209,6 @@ function dateDeRetour($dureEmprunt) {
     return date('Y-m-d', strtotime("+{$dureEmprunt} days"));
 }
 
-
 function insertUmprunt($id_objet, $id_membre, $dureEmprunt) {
     $connexion     = dbconnect();
     $date_emprunt  = date('Y-m-d');
