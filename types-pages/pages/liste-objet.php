@@ -17,6 +17,7 @@ $listObjet = getListeObjet();
     
 </head>
 <body>
+    <a href="filtre.php">voir les objets filtrés</a>
 <div class="container table-container">
     <h1>Mes objets</h1>
     <table class="table bauhaus-table">
@@ -42,5 +43,7 @@ $listObjet = getListeObjet();
         </tbody>
     </table>
 </div>
+
 </body>
+
 </html>

@@ -97,3 +97,9 @@ WHERE email ='alice@example.com' AND mdp ='pass1';
 SELECT o.nom_objet, e.date_retour
 FROM f_objet o
 LEFT JOIN f_emprunt e ON o.id_objet = e.id_objet;
+
+--filtre
+SELECT c.nom_categorie, o.nom_objet
+FROM f_objet o
+JOIN f_categorie_objet c ON o.id_categorie = c.id_categorie
+ORDER BY c.nom_categorie, o.nom_objet;

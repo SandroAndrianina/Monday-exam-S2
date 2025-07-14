@@ -39,7 +39,7 @@ creation de page:
         OKAY!creer une fonction getListeObjet()
 
     filtre par categorie:
-        créer filtre.php
+        OKAY!créer filtre.php
         créer une requète pour prendre la liste des objets selon leur catégorie
         créer la fonction getObjByCat()
         stylé avec boostrap
