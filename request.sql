@@ -1,8 +1,10 @@
+CREATE database proet_final_S2;
+USE proet_final_S2;
 CREATE TABLE f_membre (
   id_membre INT NOT NULL AUTO_INCREMENT,
   nom VARCHAR(14),
   date_de_naissance DATE,
-  gender ENUM('M','F') NOT NULL,
+  genre ENUM('M','F') NOT NULL,
   email VARCHAR(30),
   ville VARCHAR(30),
   mdp VARCHAR(30),
@@ -40,37 +42,28 @@ CREATE TABLE f_emprunt (
   FOREIGN KEY (id_membre) REFERENCES f_membre(id_membre)
 );
 
---insertion des données test:
--- Insertion de 4 membres
-INSERT INTO f_membre (nom, date_de_naissance, genre, gender, email, ville, mdp, image_profil) VALUES
-('Alice',  '1990-01-01', 1, 'F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
-('Bob',    '1988-05-10', 2, 'M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
-('Clara',  '1992-09-15', 1, 'F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
-('David',  '1985-12-20', 2, 'M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
+INSERT INTO f_membre (nom, date_de_naissance, genre, email, ville, mdp, image_profil) VALUES
+('Alice',  '1990-01-01','F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
+('Bob',    '1988-05-10','M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
+('Clara',  '1992-09-15','F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
+('David',  '1985-12-20','M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
 
--- Insertion de 4 catégories
 INSERT INTO f_categorie_objet (nom_categorie) VALUES
 ('esthétique'), ('bricolage'), ('mécanique'), ('cuisine');
 
--- Insertion de 10 objets par membre (répartis sur les catégories)
 INSERT INTO f_objet (nom_objet, id_categorie, id_membre) VALUES
--- Alice (id_membre = 1)
 ('Parfum', 1, 1), ('Tournevis', 2, 1), ('Clé anglaise', 3, 1), ('Mixer', 4, 1), ('Crème', 1, 1),
 ('Marteau', 2, 1), ('Bouilloire', 4, 1), ('Rasoir', 1, 1), ('Perceuse', 2, 1), ('Balance', 4, 1),
 
--- Bob (id_membre = 2)
 ('Shampoing', 1, 2), ('Scie', 2, 2), ('Pompe', 3, 2), ('Four', 4, 2), ('Gel', 1, 2),
 ('Tournevis', 2, 2), ('Grille-pain', 4, 2), ('Tondeuse', 1, 2), ('Visseuse', 2, 2), ('Poêle', 4, 2),
 
--- Clara (id_membre = 3)
 ('Rouge à lèvres', 1, 3), ('Ciseau', 2, 3), ('Batterie', 3, 3), ('Blender', 4, 3), ('Fond de teint', 1, 3),
 ('Perforateur', 2, 3), ('Casserole', 4, 3), ('Brosse', 1, 3), ('Lime', 2, 3), ('Cocotte', 4, 3),
 
--- David (id_membre = 4)
 ('Lotion', 1, 4), ('Pince', 2, 4), ('Courroie', 3, 4), ('Micro-onde', 4, 4), ('Savon', 1, 4),
 ('Clé dynamométrique', 3, 4), ('Friteuse', 4, 4), ('Crème solaire', 1, 4), ('Clé plate', 3, 4), ('Mixeur', 4, 4);
 
--- Insertion de 10 emprunts (avec des dates fictives)
 INSERT INTO f_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
 (1, 2, '2025-07-01', '2025-07-10'),
 (5, 3, '2025-07-02', '2025-07-12'),

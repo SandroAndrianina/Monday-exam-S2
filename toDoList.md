@@ -40,3 +40,11 @@ faire marcher en local le projet:
 faire marcher en deployement le projet:
     connexion ITU LABS
     création de base ITU LABS
+
+
+    version 2:
+         ajoute une nouvele objet par membre:
+            creer un page ajouteObjet.php
+            ajouter une lien sur liste-objet.php vers ajouteObjet.php
+            creer les imput de la table objet et table 
+            creer un fonction ajouteObjet() pour ecrire les imput dans la table objet 

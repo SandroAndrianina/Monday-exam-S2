@@ -4,7 +4,7 @@
         static $connect = null;
 
         if( $connect === null ) { 
-            $connect = mysqli_connect('localhost', 'ETU004110','dkr44NRK','db_s2_ETU004110');
+            $connect = mysqli_connect('localhost', 'root','','proet_final_S2');
 
             if(!$connect) {
                 die('Erreur de connexion à la base de données : ' . mysqli_connect_error());

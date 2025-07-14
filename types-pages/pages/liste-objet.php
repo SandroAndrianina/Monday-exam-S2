@@ -18,6 +18,7 @@ $listObjet = getListeObjet($id_membre);
 
 <div class="container py-5">
     <h1 class="mb-4">Mes objets</h1>
+    <a href="ajouteObjet.php">Ajoute le nouveau objet</a>
     <table class="table table-bordered w-50 mx-auto">
         <thead class="table-light">
             <tr>
