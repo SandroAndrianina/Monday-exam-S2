@@ -1,13 +1,7 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "proet_final_S2");
-if ($conn->connect_error) {
-    die("Erreur de connexion: " . $conn->connect_error);
-}
 
-
-$categories = $conn->query("SELECT id_categorie, nom_categorie FROM f_categorie_objet");
-
-
+require('../../include/functions.php');
+$categories = getCat();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,21 +9,35 @@ $categories = $conn->query("SELECT id_categorie, nom_categorie FROM f_categorie_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un objet</title>
+    <link href="../../assets/css/bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/ajoutObj.css" rel="stylesheet">
+
 </head>
 <body>
+    <div class="bauhaus-form">
+        <h1>Ajouter un objet</h1>
+        <form action="../treatments/traitement_ajout_objet.php" method="get">
 
-<form action="traitement_ajout_objet.php" method="post">
-    <label for="nom_objet">Nom de l'objet :</label>
-    <input type="text" id="nom_objet" name="nom_objet" required><br><br>
+                    <div class="mb-3">
+                        <label for="nom_objet" class="form-label">Nom de l'objet :</label>
+                        <input type="text" class="form-control" id="nom_objet" name="nom_objet" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_categorie" class="form-label">Catégorie :</label>
+                        <select class="form-select" id="id_categorie" name="id_categorie" required>
+                            <?php foreach($categories as $cat): ?>
+                                <option value="<?= $cat['id_categorie'] ?>"><?= htmlspecialchars($cat['nom_categorie']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="publier"><label for="fichier">Add video</label></div>
+                    <input type="file" name="fichier" id="fichier" required>
 
-    <label for="id_categorie">Catégorie :</label>
-    <select id="id_categorie" name="id_categorie" required>
-        <?php while($cat = $categories->fetch_assoc()): ?>
-            <option value="<?= $cat['id_categorie'] ?>"><?= htmlspecialchars($cat['nom_categorie']) ?></option>
-        <?php endwhile; ?>
-    </select><br><br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-outline-primary">Ajouter l'objet</button>
+                    </div>
 
-    <input type="submit" value="Ajouter l'objet">
-</form>
-</body>
+        </form>
+    </body>
 </html>

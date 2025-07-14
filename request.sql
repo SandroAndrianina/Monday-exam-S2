@@ -97,3 +97,7 @@ SELECT c.nom_categorie, o.nom_objet
 FROM f_objet o
 JOIN f_categorie_objet c ON o.id_categorie = c.id_categorie
 ORDER BY c.nom_categorie, o.nom_objet;
+
+--f_categorie_objet:
+SELECT id_categorie, nom_categorie
+FROM f_categorie_objet;

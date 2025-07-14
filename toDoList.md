@@ -59,3 +59,16 @@ faire marcher en deployement le projet:
             ajouter une lien sur liste-objet.php vers ajouteObjet.php
             creer les imput de la table objet et table 
             creer un fonction ajouteObjet() pour ecrire les imput dans la table objet 
+
+            OKAY!!créer un fonction insertObj($nom_objet, $id_categorie, $id_membre)
+
+            créer un fonction qui appelle tout ces fonction : generalUpload($id_objet, $nom_image, $photo)
+            créer un fonction upload($photo)
+                insertion dans f_image_objet
+                    -créer un fonction : insertImgObj($id_objet, $nom_image)
+                        -id_objet
+                            créer un fonction qui prend le dernier id_objet
+                            getLastIdObj()
+                        -nom_image
+                        
+            

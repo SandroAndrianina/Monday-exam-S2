@@ -2,12 +2,15 @@
 require('../../include/functions.php');
 session_start();
 
+
 if (isset($_POST['nom_objet']) && isset($_POST['id_categorie'])) {
     $nom_objet = $_POST['nom_objet'];
     $id_categorie = $_POST['id_categorie'];
-    $id_membre = getgetListeObjet();
+    $id_membre = $_SESSION['idM_connected'];
 
-    insert_objet($nom_objet, $id_categorie);
+insertObj($nom_objet, $id_categorie, $id_membre);
+
+generalUpload($id_objet, $nom_image, $photo);
 
     header("Location: ../pages/liste-objet.php");
 } else {
