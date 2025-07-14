@@ -23,11 +23,21 @@ require('connexion.php');
     }
 
 //INSCRIPTION
-    function insert_inscription($email, $motdepasse, $nom, $ddn) {
-        $sql = "INSERT INTO membres(Email, Motdepasse, Nom, DateNaissance) VALUES ('%s', '%s', '%s', '%s')";
-        $sql = sprintf($sql, $email, $motdepasse, $nom, $ddn);
-        $inserted = mysqli_query(dbconnect(), $sql);
-    }
+function insert_inscription($nom, $date_de_naissance, $gender, $email, $ville, $mdp, $image_profil = null) {
+    $connexion = dbconnect();
+    $sql = "INSERT INTO f_membre (nom, date_de_naissance, gender, email, ville, mdp, image_profil) 
+            VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')";
+    $sql = sprintf($sql, 
+        mysqli_real_escape_string($connexion, $nom),
+        mysqli_real_escape_string($connexion, $date_de_naissance),
+        mysqli_real_escape_string($connexion, $gender),
+        mysqli_real_escape_string($connexion, $email),
+        mysqli_real_escape_string($connexion, $ville),
+        mysqli_real_escape_string($connexion, $mdp),
+        mysqli_real_escape_string($connexion, $image_profil)
+    );
+    return mysqli_query($connexion, $sql);
+}
 
 //prendre la liste des objects:
 

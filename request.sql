@@ -2,7 +2,6 @@ CREATE TABLE f_membre (
   id_membre INT NOT NULL AUTO_INCREMENT,
   nom VARCHAR(14),
   date_de_naissance DATE,
-  genre INT,
   gender ENUM('M','F') NOT NULL,
   email VARCHAR(30),
   ville VARCHAR(30),
