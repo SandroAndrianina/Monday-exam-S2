@@ -10,7 +10,7 @@ require('connexion.php');
     return (int)$row['nb'];
 }
 
-    function get_idM_connected($email, $motdepasse) {
+function get_idM_connected($email, $motdepasse) {
         $sql_idMembre = "SELECT id_membre
                         FROM f_membre 
                         WHERE email ='%s' AND mdp ='%s'";
@@ -41,21 +41,51 @@ function insert_inscription($nom, $date_de_naissance, $gender, $email, $ville, $
 
 //prendre la liste des objects:
 
-function getListeObjet($id_membre) {
+function getListeObjet() {
     $connexion = dbconnect();
-    $sql = "SELECT o.nom_objet
+    $sql = "SELECT o.nom_objet, e.date_retour
             FROM f_objet o
-            JOIN f_membre m ON o.id_membre = m.id_membre
-            WHERE m.id_membre = %d";
-    $sql = sprintf($sql, $id_membre);
+            LEFT JOIN f_emprunt e ON o.id_objet = e.id_objet";
     $result = mysqli_query($connexion, $sql);
 
     $objets = [];
     while ($row = mysqli_fetch_assoc($result)) {
-        $objets[] = $row['nom_objet'];
+        $objets[] = [
+            'nom_objet' => $row['nom_objet'],
+            'date_retour' => $row['date_retour']
+        ];
     }
     mysqli_free_result($result);
     return $objets;
 }
+
+//FILTRE
+function getObjByCat() {
+    $connexion = dbconnect();
+    $sql = "
+        SELECT c.nom_categorie, o.nom_objet
+        FROM f_objet o
+        JOIN f_categorie_objet c ON o.id_categorie = c.id_categorie
+        ORDER BY c.nom_categorie, o.nom_objet
+    ";
+    $res = mysqli_query($connexion, $sql);
+    if (!$res) {
+        die('Erreur de requête : ' . mysqli_error($connexion));
+    }
+
+    $data = [];
+    while ($row = mysqli_fetch_assoc($res)) {
+        $cat = $row['nom_categorie'];
+        $obj = $row['nom_objet'];
+        if (!isset($data[$cat])) {
+            $data[$cat] = [];
+        }
+        $data[$cat][] = $obj;
+    }
+    mysqli_free_result($res);
+
+    return $data;
+}
+
 
 ?>

@@ -27,11 +27,22 @@ creation de page:
         stylé avec boostrap
         
     creer inscription.php
+        utiliser les anciens code dans TP réseaux sociaux
+        créer inscription.php
+        créer treatment-inscription.php
+        créer une fonction : insert_inscription
+        stylé avec boostrap
+
     creer liste_objet.php
         OKAY!creer une session pour stoque l'id_membre
         OKAY!creer une requete pour prendre les objets
-        OKAY!creer une fonction getListeObjet(id_membre)
-    filtre par categorie
+        OKAY!creer une fonction getListeObjet()
+
+    filtre par categorie:
+        OKAY!créer filtre.php
+        créer une requète pour prendre la liste des objets selon leur catégorie
+        créer la fonction getObjByCat()
+        stylé avec boostrap
 
 faire marcher en local le projet:
     connnexion normal

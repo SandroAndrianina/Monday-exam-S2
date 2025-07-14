@@ -3,7 +3,7 @@ session_start();
 require('../../include/functions.php');
 $id_membre = $_SESSION['idM_connected'];
 
-$listObjet = getListeObjet($id_membre);
+$listObjet = getListeObjet();
 ?>
 
 <!DOCTYPE html>
@@ -13,22 +13,32 @@ $listObjet = getListeObjet($id_membre);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des objets</title>
     <link href="../../assets/css/bootstrap-5.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../assets/css/list-objet.css" rel="stylesheet">
+    
 </head>
-<body class="bg-light">
-
-<div class="container py-5">
-    <h1 class="mb-4">Mes objets</h1>
+<body>
+    <a href="filtre.php">voir les objets filtrés</a>
+<div class="container table-container">
+    <h1>Mes objets</h1>
     <a href="ajouteObjet.php">Ajoute le nouveau objet</a>
-    <table class="table table-bordered w-50 mx-auto">
-        <thead class="table-light">
+    <table class="table bauhaus-table">
+        <thead>
             <tr>
                 <th>Nom de l'objet</th>
+                <th>Date de retour</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($listObjet as $nom): ?>
+            <?php foreach ($listObjet as $objet): ?>
                 <tr>
-                    <td><?= htmlspecialchars($nom) ?></td>
+                    <td><?= htmlspecialchars($objet['nom_objet']) ?></td>
+                    <td>
+                        <?= $objet['date_retour'] ? htmlspecialchars($objet['date_retour']) : "-------" ?>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-dark btn-sm rounded-pill px-3">Voir</a>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -36,4 +46,5 @@ $listObjet = getListeObjet($id_membre);
 </div>
 
 </body>
+
 </html>

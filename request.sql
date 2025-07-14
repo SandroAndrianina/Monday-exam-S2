@@ -11,6 +11,7 @@ CREATE TABLE f_membre (
   image_profil VARCHAR(50),
   PRIMARY KEY (id_membre)
 );
+
 CREATE TABLE f_categorie_objet (
   id_categorie INT AUTO_INCREMENT PRIMARY KEY,
   nom_categorie VARCHAR(50) NOT NULL
@@ -42,11 +43,13 @@ CREATE TABLE f_emprunt (
   FOREIGN KEY (id_membre) REFERENCES f_membre(id_membre)
 );
 
-INSERT INTO f_membre (nom, date_de_naissance, genre, email, ville, mdp, image_profil) VALUES
-('Alice',  '1990-01-01','F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
-('Bob',    '1988-05-10','M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
-('Clara',  '1992-09-15','F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
-('David',  '1985-12-20','M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
+--insertion des données test:
+-- Insertion de 4 membres
+INSERT INTO f_membre (nom, date_de_naissance, genre, gender, email, ville, mdp, image_profil) VALUES
+('Alice',  '1990-01-01', 1, 'F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
+('Bob',    '1988-05-10', 2, 'M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
+('Clara',  '1992-09-15', 1, 'F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
+('David',  '1985-12-20', 2, 'M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
 
 INSERT INTO f_categorie_objet (nom_categorie) VALUES
 ('esthétique'), ('bricolage'), ('mécanique'), ('cuisine');
@@ -85,17 +88,12 @@ FROM f_membre
 WHERE email ='alice@example.com' AND mdp ='pass1';
 
 --prendre la lsite des object:
---temporary
-SELECT o.nom_objet
-FROM f_objet o JOIN f_membre m
-ON o.id_membre  = m.id_membre
-WHERE m.id_membre = 1;
-
-
---final
 SELECT o.nom_objet, e.date_retour
-FROM f_objet o JOIN f_membre m
-ON o.id_membre  = m.id_membre
-JOIN f_emprunt e
-ON e.id_objet = o.id_objet AND e.id_membre = m.id_membre
-WHERE m.id_membre = 1;
+FROM f_objet o
+LEFT JOIN f_emprunt e ON o.id_objet = e.id_objet;
+
+--filtre
+SELECT c.nom_categorie, o.nom_objet
+FROM f_objet o
+JOIN f_categorie_objet c ON o.id_categorie = c.id_categorie
+ORDER BY c.nom_categorie, o.nom_objet;

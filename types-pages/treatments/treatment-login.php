@@ -7,8 +7,8 @@
         $motDePasse = $_POST['motDePasse'];
         $number_found = verify_login($email, $motDePasse);
         
-         $ID = get_idM_connected($email, $motDePasse);
-         $_SESSION['idM_connected'] = $ID;
+        //  $ID = get_idM_connected($email, $motDePasse);
+        //  $_SESSION['idM_connected'] = $ID;
 
     }
 
