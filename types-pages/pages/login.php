@@ -16,7 +16,7 @@
             <p>Veuillez vous connecter</p>
             <hr>
             <div class="formulaire">
-                <form action="../traitement/traitement_login.php" method="post">
+                <form action="../treatments/treatment-login.php" method="post">
                     <p>Entrez votre Email <input type="text" name="email"></p>
                     <p>Entrez votre mot de passe<input type="password" name="motDePasse"> </p>
                     <input type="submit" value="Se connecter" class="bt_connect">

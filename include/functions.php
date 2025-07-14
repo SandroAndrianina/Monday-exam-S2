@@ -1,25 +1,23 @@
 <?php
 require('connexion.php');
 //LOGIN
-    function verify_login($email, $motdepasse) {
-        $sql_verify = "SELECT email ,mdp
-                        FROM f_membre 
-                        WHERE email ='%s' AND 
-                        mdp ='%s';";
-        $sql_verify = sprintf($sql_verify, $email, $motdepasse);
-        $resultat_verify = mysqli_query(dbconnect(), $sql_verify);
-        $resultat_verify_assoc = mysqli_fetch_assoc($resultat_verify);
-        $number_found = mysqli_num_rows($resultat_verify);
-        mysqli_free_result($resultat_verify);
-        return $number_found;
-    }
+  function verify_login($email, $motdepasse) {
+    $sql_verify = "SELECT COUNT(*) AS nb FROM f_membre WHERE email ='%s' AND mdp ='%s'";
+    $sql_verify = sprintf($sql_verify, $email, $motdepasse);
+    $resultat_verify = mysqli_query(dbconnect(), $sql_verify);
+    $row = mysqli_fetch_assoc($resultat_verify);
+    mysqli_free_result($resultat_verify);
+    return (int)$row['nb'];
+}
 
     function get_idM_connected($email, $motdepasse) {
-        $sql_idMembre = "SELECT idMembre FROM membres WHERE Email ='%s' AND Motdepasse ='%s'";
+        $sql_idMembre = "SELECT id_membre
+                        FROM f_membre 
+                        WHERE email ='%s' AND mdp ='%s'";
         $sql_idMembre = sprintf($sql_idMembre, $email, $motdepasse);
         $resultat_id = mysqli_query(dbconnect(), $sql_idMembre);
         $donnees = mysqli_fetch_assoc($resultat_id);
-        $ID = $donnees['idMembre'];
+        $ID = $donnees['id_membre'];
         mysqli_free_result($resultat_id);
         return $ID;
     }
@@ -30,4 +28,24 @@ require('connexion.php');
         $sql = sprintf($sql, $email, $motdepasse, $nom, $ddn);
         $inserted = mysqli_query(dbconnect(), $sql);
     }
+
+//prendre la liste des objects:
+
+function getListeObjet($id_membre) {
+    $connexion = dbconnect();
+    $sql = "SELECT o.nom_objet
+            FROM f_objet o
+            JOIN f_membre m ON o.id_membre = m.id_membre
+            WHERE m.id_membre = %d";
+    $sql = sprintf($sql, $id_membre);
+    $result = mysqli_query($connexion, $sql);
+
+    $objets = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $objets[] = $row['nom_objet'];
+    }
+    mysqli_free_result($result);
+    return $objets;
+}
+
 ?>

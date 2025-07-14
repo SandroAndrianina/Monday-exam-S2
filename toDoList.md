@@ -28,6 +28,9 @@ creation de page:
         
     creer inscription.php
     creer liste_objet.php
+        OKAY!creer une session pour stoque l'id_membre
+        OKAY!creer une requete pour prendre les objets
+        OKAY!creer une fonction getListeObjet(id_membre)
     filtre par categorie
 
 faire marcher en local le projet:

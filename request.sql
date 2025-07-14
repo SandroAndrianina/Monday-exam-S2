@@ -85,7 +85,25 @@ INSERT INTO f_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES
 (40, 3, '2025-07-10', '2025-07-20');
 
 --vérification du login:
-SELECT email ,mdp
+SELECT COUNT(*) AS nb FROM f_membre WHERE email ='%s' AND mdp ='%s';
+
+--id membre:
+SELECT id_membre
 FROM f_membre 
-WHERE email ='%s' AND 
-mdp ='%s';
+WHERE email ='alice@example.com' AND mdp ='pass1';
+
+--prendre la lsite des object:
+--temporary
+SELECT o.nom_objet
+FROM f_objet o JOIN f_membre m
+ON o.id_membre  = m.id_membre
+WHERE m.id_membre = 1;
+
+
+--final
+SELECT o.nom_objet, e.date_retour
+FROM f_objet o JOIN f_membre m
+ON o.id_membre  = m.id_membre
+JOIN f_emprunt e
+ON e.id_objet = o.id_objet AND e.id_membre = m.id_membre
+WHERE m.id_membre = 1;

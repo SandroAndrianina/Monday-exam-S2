@@ -1,3 +1,3 @@
 <?php 
-header("Location:types-pages/index.php");
+header("Location:types-pages/pages/login.php");
 ?>
