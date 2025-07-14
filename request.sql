@@ -2,13 +2,26 @@ CREATE TABLE f_membre (
   id_membre INT NOT NULL AUTO_INCREMENT,
   nom VARCHAR(14),
   date_de_naissance DATE,
-  gender ENUM('M','F') NOT NULL,
+  genre ENUM('M','F') NOT NULL,
   email VARCHAR(30),
   ville VARCHAR(30),
   mdp VARCHAR(30),
   image_profil VARCHAR(50),
   PRIMARY KEY (id_membre)
 );
+
+CREATE TABLE f_membre (
+  id_membre INT NOT NULL AUTO_INCREMENT,
+  nom VARCHAR(14),
+  date_de_naissance DATE,
+  genre ENUM('M','F') NOT NULL,
+  email VARCHAR(30),
+  ville VARCHAR(30),
+  mdp VARCHAR(30),
+  image_profil VARCHAR(50),
+  PRIMARY KEY (id_membre)
+);
+
 CREATE TABLE f_categorie_objet (
   id_categorie INT AUTO_INCREMENT PRIMARY KEY,
   nom_categorie VARCHAR(50) NOT NULL
@@ -42,11 +55,12 @@ CREATE TABLE f_emprunt (
 
 --insertion des données test:
 -- Insertion de 4 membres
-INSERT INTO f_membre (nom, date_de_naissance, genre, gender, email, ville, mdp, image_profil) VALUES
-('Alice',  '1990-01-01', 1, 'F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
-('Bob',    '1988-05-10', 2, 'M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
-('Clara',  '1992-09-15', 1, 'F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
-('David',  '1985-12-20', 2, 'M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
+INSERT INTO f_membre (nom, date_de_naissance, genre, email, ville, mdp, image_profil) VALUES
+('Alice',  '1990-01-01', 'F', 'alice@example.com', 'Antananarivo', 'pass1', 'alice.jpg'),
+('Bob',    '1988-05-10', 'M', 'bob@example.com',   'Toamasina',    'pass2', 'bob.jpg'),
+('Clara',  '1992-09-15', 'F', 'clara@example.com', 'Fianarantsoa', 'pass3', 'clara.jpg'),
+('David',  '1985-12-20', 'M', 'david@example.com', 'Mahajanga',    'pass4', 'david.jpg');
+
 
 -- Insertion de 4 catégories
 INSERT INTO f_categorie_objet (nom_categorie) VALUES
