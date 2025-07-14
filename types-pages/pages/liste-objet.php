@@ -17,10 +17,11 @@ $listObjet = getListeObjet();
     
 </head>
 <body>
-    <a href="filtre.php">voir les objets filtrés</a>
-<div class="container table-container">
+<div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="filtre.php" class="btn btn-outline-primary rounded-pill px-4 fw-bold shadow-sm">Voir les objets filtrés</a>
+        <a href="ajouteObjet.php" class="btn btn-outline-dark rounded-pill px-4 fw-bold shadow-sm">Ajoute le nouveau objet</a>
+    </div><div class="container table-container">
     <h1>Mes objets</h1>
-    <a href="ajouteObjet.php">Ajoute le nouveau objet</a>
     <table class="table bauhaus-table">
         <thead>
             <tr>
